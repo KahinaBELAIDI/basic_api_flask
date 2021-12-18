@@ -1,0 +1,83 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "sean",
+    "version": "1.0.0",
+    "title": "challenge-api",
+    "contact": {
+      "email": "ek_belaidi@esi.dz"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "127.0.0.1:5000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Images",
+      "description": "API for images"
+    }
+  ],
+  "paths": {
+    "/images": {
+      "post": {
+        "tags": ["Images"],
+        "description": "insert a new Image",
+        "parameters": [
+          {
+            "name": "image",
+            "in": "body",
+            "description": "image name",
+            "schema": {
+              "$ref": "#/definitions/Image"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Image Added Successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": "string",
+                "data": "object"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": "string",
+                "data": "object"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Image": {
+      "required": ["name", "depth"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "depth": {
+          "type": "string"
+        },
+        "default_row": {
+          "type": "string"
+        },
+        "resized_row": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
